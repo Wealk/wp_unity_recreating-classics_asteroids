@@ -65,7 +65,7 @@ Interfaz:
 
 > Se puede incorporar el segundo jugador el iniciar la partida
 
-## 🦈 Licencia
+## 🐟 Licencia
 
 Este proyecto se distribuye bajo la licencia **MIT**.  
 Puedes usarlo, modificarlo y distribuirlo libremente.
