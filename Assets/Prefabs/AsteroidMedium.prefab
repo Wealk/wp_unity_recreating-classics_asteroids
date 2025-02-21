@@ -185,4 +185,5 @@ MonoBehaviour:
   - {fileID: 21300000, guid: b89dc7c4d35953e438899e93878684f3, type: 3}
   speedRange: {x: 2, y: 3}
   points: 50
+  destroySound: {fileID: 8300000, guid: d04872df53e83324592988fb591ddd99, type: 3}
   smallerAsteroid: {fileID: 6292065478946840283, guid: 402aca0171814cc4f960574423135808, type: 3}

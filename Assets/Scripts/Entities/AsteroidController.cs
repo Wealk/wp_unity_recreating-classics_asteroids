@@ -11,16 +11,20 @@ public class AsteroidController : MonoBehaviour {
     [SerializeField]
     private int points;
     [SerializeField]
+    private AudioClip destroySound;
+    [SerializeField]
     private GameObject smallerAsteroid;
 
     // Private variables
     private new SpriteRenderer renderer;
     private new Rigidbody2D rigidbody;
+    private new AudioSource audio;
 
     #region Unity methods
     private void Awake() {
         renderer = GetComponent<SpriteRenderer>();
         rigidbody = GetComponent<Rigidbody2D>();
+        audio = GetComponent<AudioSource>();
         renderer.sprite = asteroidSprites[Random.Range(0, asteroidSprites.Length)];
         rigidbody.linearVelocity = Random.insideUnitCircle.normalized * Random.Range(speedRange.x, speedRange.y);
 
@@ -39,6 +43,8 @@ public class AsteroidController : MonoBehaviour {
 
         if (smallerAsteroid != null)
             InstantiateSmallerAsteroids();
+
+        AudioController.Instance.PlayOnce(destroySound);
         Destroy(gameObject);
     }
 

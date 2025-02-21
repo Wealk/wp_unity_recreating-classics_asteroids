@@ -21,6 +21,8 @@ public class SpaceshipController : MonoBehaviour {
     [SerializeField]
     private float respawnTime;
     [SerializeField]
+    private AudioClip lifeGainedEffect;
+    [SerializeField]
     private GameObject bulletPrefab;
     [SerializeField]
     private GameObject deathPrefab;
@@ -28,6 +30,7 @@ public class SpaceshipController : MonoBehaviour {
     // Private variables
     private Camera mainCamera;
     private new Rigidbody2D rigidbody;
+    private new AudioSource audio;
     private GameObject propulsionFire;
     private AsteroidsActions actions;
     private PlayerScore scoreUI;
@@ -47,6 +50,7 @@ public class SpaceshipController : MonoBehaviour {
     private void Awake() {
         mainCamera = Camera.main;
         rigidbody = GetComponent<Rigidbody2D>();
+        audio = GetComponent<AudioSource>();
         propulsionFire = transform.GetChild(0).gameObject;
         score = 0;
         lifes = STARTING_LIFES;
@@ -118,6 +122,7 @@ public class SpaceshipController : MonoBehaviour {
 
         if (score >= nextLifeScore) {
             AddLife();
+            AudioController.Instance.PlayOnce(lifeGainedEffect);
             nextLifeScore += LIFE_THRESHOLD_SCORE;
         }
     }
@@ -187,11 +192,13 @@ public class SpaceshipController : MonoBehaviour {
     private void HandleImpulse(InputAction.CallbackContext context) {
         currentImpulse = impulseForce;
         propulsionFire.SetActive(true);
+        audio.Play();
     }
 
     private void HandleImpulseStop(InputAction.CallbackContext context) {
         currentImpulse = 0f;
         propulsionFire.SetActive(false);
+        audio.Stop();
     }
 
     private void HandleHyperspace(InputAction.CallbackContext context) {

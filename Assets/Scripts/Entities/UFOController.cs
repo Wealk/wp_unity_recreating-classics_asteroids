@@ -11,6 +11,8 @@ public class OVNIController : MonoBehaviour {
     [SerializeField]
     private int points;
     [SerializeField]
+    private AudioClip destroyEffect;
+    [SerializeField]
     private GameObject bulletPrefab;
     [SerializeField]
     private float shootDelay;
@@ -61,6 +63,7 @@ public class OVNIController : MonoBehaviour {
         if (collision.collider.CompareTag("PlayerBullet") && collision.collider.TryGetComponent<BulletController>(out var bullet) && bullet.Owner != null)
             bullet.Owner.AddScore(points);
 
+        AudioController.Instance.PlayOnce(destroyEffect);
         Destroy(gameObject);
     }
     #endregion
@@ -90,10 +93,14 @@ public class OVNIController : MonoBehaviour {
     }
 
     private Vector2 GetPlayerTargetShootDirection() {
-        var playerDirection = (playerPosition.position - transform.position).normalized;
-        var randomOffset = Random.insideUnitCircle;
+        if (playerPosition != null) {
+            var playerDirection = (playerPosition.position - transform.position).normalized;
+            var randomOffset = Random.insideUnitCircle;
 
-        return Vector2.Lerp(randomOffset, playerDirection, aimPrecision).normalized;
+            return Vector2.Lerp(randomOffset, playerDirection, aimPrecision).normalized;
+        }
+
+        return Random.insideUnitCircle.normalized;
     }
 
     private Transform GetPlayerPosition() {
