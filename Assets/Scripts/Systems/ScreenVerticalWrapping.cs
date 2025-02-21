@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ScreenWrapping : MonoBehaviour {
+public class ScreenVerticalWrapping : MonoBehaviour {
     // Private variables
     private Vector2 screenBounds;
     private Vector2 objectSize;
@@ -21,11 +21,12 @@ public class ScreenWrapping : MonoBehaviour {
     }
 
     private void OnBecameInvisible() {
+        if (transform.position.x > screenBounds.x + objectSize.x || transform.position.x < -screenBounds.x - objectSize.x) {
+            Destroy(gameObject);
+            return;
+        }
+
         var newPosition = transform.position;
-
-        if (transform.position.x > screenBounds.x + objectSize.x) newPosition.x = -screenBounds.x - objectSize.x;
-        else if (transform.position.x < -screenBounds.x - objectSize.x) newPosition.x = screenBounds.x + objectSize.x;
-
         if (transform.position.y > screenBounds.y + objectSize.y) newPosition.y = -screenBounds.y - objectSize.y;
         else if (transform.position.y < -screenBounds.y - objectSize.y) newPosition.y = screenBounds.y + objectSize.y;
 
@@ -33,11 +34,10 @@ public class ScreenWrapping : MonoBehaviour {
     }
     #endregion
 
-
     #region Private methods
     private void EnsureInsideScreen() {
         var newPosition = transform.position;
-       
+
         if (newPosition.x > screenBounds.x + objectSize.x) newPosition.x = screenBounds.x - objectSize.x;
         else if (newPosition.x < -screenBounds.x - objectSize.x) newPosition.x = -screenBounds.x + objectSize.x;
 
