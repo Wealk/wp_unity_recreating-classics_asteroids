@@ -13,6 +13,8 @@ public class AsteroidController : MonoBehaviour {
     [SerializeField]
     private AudioClip destroySound;
     [SerializeField]
+    private GameObject particlesEffect;
+    [SerializeField]
     private GameObject smallerAsteroid;
 
     // Private variables
@@ -45,6 +47,7 @@ public class AsteroidController : MonoBehaviour {
             InstantiateSmallerAsteroids();
 
         AudioController.Instance.PlayOnce(destroySound);
+        Destroy(Instantiate(particlesEffect, transform.position, Quaternion.identity), 1);
         Destroy(gameObject);
     }
 

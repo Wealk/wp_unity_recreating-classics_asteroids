@@ -15,6 +15,8 @@ public class OVNIController : MonoBehaviour {
     [SerializeField]
     private GameObject bulletPrefab;
     [SerializeField]
+    private GameObject particlesEffect;
+    [SerializeField]
     private float shootDelay;
     [SerializeField]
     private bool shouldShootToPlayer;
@@ -64,6 +66,8 @@ public class OVNIController : MonoBehaviour {
             bullet.Owner.AddScore(points);
 
         AudioController.Instance.PlayOnce(destroyEffect);
+
+        Destroy(Instantiate(particlesEffect, transform.position, Quaternion.identity), 1);
         Destroy(gameObject);
     }
     #endregion

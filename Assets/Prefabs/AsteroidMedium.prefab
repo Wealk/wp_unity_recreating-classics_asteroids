@@ -186,4 +186,5 @@ MonoBehaviour:
   speedRange: {x: 2, y: 3}
   points: 50
   destroySound: {fileID: 8300000, guid: d04872df53e83324592988fb591ddd99, type: 3}
+  particlesEffect: {fileID: 6915461937534466739, guid: 082842cdbd14b684f864cb48b3318289, type: 3}
   smallerAsteroid: {fileID: 6292065478946840283, guid: 402aca0171814cc4f960574423135808, type: 3}

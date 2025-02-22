@@ -201,6 +201,7 @@ MonoBehaviour:
   points: 1000
   destroyEffect: {fileID: 8300000, guid: e3b4533e2bf6ceb4189ef8eb777d6d37, type: 3}
   bulletPrefab: {fileID: 3684306349594736826, guid: 9181dd4c54ea1414aa4acf071c22df00, type: 3}
+  particlesEffect: {fileID: 6915461937534466739, guid: 082842cdbd14b684f864cb48b3318289, type: 3}
   shootDelay: 0.75
   shouldShootToPlayer: 1
   aimPrecision: 0.65
